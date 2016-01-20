@@ -90,8 +90,7 @@ public class QRtoGerber
 		StringBuilder s = new StringBuilder();
 		String size = String.format("%.4f", line_size);
 		
-		/* FIXME : add an URL here*/
-		s.append("G04 usful comment *\n");
+		s.append("G04 File generated using https://github.com/RandomReaper/qr2gerber *\n");
 		
 		/* FIXME : add line width, program version, ..*/
 		s.append("G04 encoded with QRtoGerber version " + VERSION + " *\n");
