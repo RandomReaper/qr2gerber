@@ -69,8 +69,8 @@ public class App extends JFrame implements ActionListener {
 
 	public App() {
 		setLayout(new MigLayout());
-		stringField = new JTextField("Text field", 15);
-		sizeField = new JTextField("10.0", 15);
+		stringField = new JTextField("https://github.com/RandomReaper/qr2gerber", 35);
+		sizeField = new JTextField("10.0", 35);
 		gobutton = new JButton("Generate");
 		gobutton.addActionListener(this);
 		browseButton = new JButton("browse");
@@ -81,7 +81,7 @@ public class App extends JFrame implements ActionListener {
 		setTitle("qr2gerber");
 		setSize(400, 300);
 		setLocationRelativeTo(null);
-		add(new JLabel("Hello world"));
+		add(new JLabel("String"));
 		add(stringField					, "wrap");
 		add(new JLabel("Size (mm): ")	, "gap unrelated");
 		add(sizeField					, "wrap");
