@@ -1,5 +1,5 @@
 # qr2gerber
-## a QR code generator for gerber (PCB) file format.
+## A QR code generator for gerber (PCB) file format.
 
 This small software converts a text string to a QR code and generates the corresponding gerber file for inclusion on a PCB.
 
@@ -14,7 +14,7 @@ The resulting QR code as seen by [gerbv](http://gerbv.geda-project.org/) (an ope
 Detail of a real board featuring a QR code generated using qr2gerber:
 ![Detail of a real board featuring a QR code generated using qr2gerber](./doc/images/real.jpg)
 
-There is also a ugly GUI (org.pignat.app.qr2gerber.App):
+There is also a **ugly** GUI (org.pignat.app.qr2gerber.App):
 ![ugly gui](./doc/images/app.png)
 
 ## Compiling (command line using maven)
