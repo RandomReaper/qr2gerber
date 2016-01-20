@@ -1,4 +1,4 @@
-# qr2gerber
+# qr2gerber [![Build Status](https://travis-ci.org/RandomReaper/qr2gerber.svg?branch=master)](https://travis-ci.org/RandomReaper/qr2gerber)
 ## A QR code generator for gerber (PCB) file format.
 
 This small software converts a text string to a QR code and generates the corresponding gerber file for inclusion on a PCB.
