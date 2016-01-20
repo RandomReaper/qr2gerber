@@ -1,7 +1,5 @@
 language: java
 
-script: cd qr2gerber
-
 jdk:
   - oraclejdk8
   - oraclejdk7

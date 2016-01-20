@@ -20,7 +20,7 @@ There is also a **ugly** GUI (org.pignat.app.qr2gerber.App):
 ## Compiling (command line using maven)
 ```
 git clone https://github.com/RandomReaper/qr2gerber.git
-cd qr2gerber/qr2gerber/
+cd qr2gerber/
 mvn package
 mvn exec:java -Dexec.args='"https://github.com/RandomReaper/qr2gerber" 10.0 /tmp/qr2gerber.test'
 ```
