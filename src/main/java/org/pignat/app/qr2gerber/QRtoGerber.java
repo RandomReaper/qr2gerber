@@ -51,10 +51,14 @@ public class QRtoGerber
 		return (size/qrcode.size());
 	}
 
-	private String draw(QRPlusInfo matrix, int sx, int sy, int dx, int dy)
+	private String draw(QRPlusInfo matrix, int sx, int sy, int sdx, int sdy)
 	{
+		/* scale */
 		int f = (int)(SCALE*size/matrix.size());
+
 		int x = f * sx;
+		int dx = f * sdx;
+		int dy = f * sdy;
 
 		/* Invert Y for gerber */
 		int y = f * (matrix.size()-1-sy);
@@ -65,8 +69,6 @@ public class QRtoGerber
 			y += SCALE;
 		}
 		
-		dx = f * dx;
-		dy = f * dy;
 		String format = "%06d";
 
 		if (dx == 0 && dy == 0)
@@ -77,7 +79,7 @@ public class QRtoGerber
 			}
 			else
 			{
-				dx = 1;				
+				dx = 1;		
 			}
 		}
 		return "X" + String.format(format, x) + "Y" + String.format(format, y) + "D2*\n"
@@ -86,9 +88,9 @@ public class QRtoGerber
 
 	public String toGerber()
 	{
-		double line_size = lineSize();
+		double lineSize = lineSize();
 		StringBuilder s = new StringBuilder();
-		String sizeString = String.format("%.4f", line_size);
+		String sizeString = String.format("%.4f", lineSize);
 		
 		s.append("G04 File generated using https://github.com/RandomReaper/qr2gerber *\n");
 		
