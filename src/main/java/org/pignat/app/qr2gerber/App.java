@@ -18,7 +18,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.zxing.EncodeHintType;
@@ -31,13 +31,14 @@ public class App extends JFrame implements ActionListener {
 		int lx;
 		int ly;
 
-		BufferedImage img = null;
+		transient BufferedImage img = null;
 
 		CustomDraw(int x, int y) {
 			lx = x;
 			ly = y;
 		}
 
+		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			if (img != null) {
@@ -45,11 +46,13 @@ public class App extends JFrame implements ActionListener {
 			}
 		}
 
+		@Override
 		public Dimension getPreferredSize() {
 			return new Dimension(lx, ly);
 		}
 
-	    public Dimension getMinimumSize() {
+	    @Override
+		public Dimension getMinimumSize() {
 			return new Dimension(lx, ly);
 	    }
 
@@ -101,7 +104,7 @@ public class App extends JFrame implements ActionListener {
 				double size = Double.parseDouble(sizeField.getText());
 				QRPlusInfo qrcode = null;
 				
-				Map<EncodeHintType, Object> encodingOptions = new Hashtable<EncodeHintType, Object>();
+				Map<EncodeHintType, Object> encodingOptions = new HashMap<EncodeHintType, Object>();
 				encodingOptions.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 				qrcode = QRPlusInfo.encode(stringField.getText(), encodingOptions).invert();
 				QRPlusInfo.encode(stringField.getText());

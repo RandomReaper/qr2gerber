@@ -9,6 +9,24 @@ public class Test
 {
 	private static final boolean invert = true;
 	private static final boolean console_print = false;
+	
+	private static void console_print(QRPlusInfo qrcode)
+	{
+		for (int y = 0; y < qrcode.size(); y++)
+		{
+			for (int x = 0; x < qrcode.size(); x++)
+			{
+				if (qrcode.get(x, y))
+				{
+					System.out.print("**");
+				} else
+				{
+					System.out.print("  ");
+				}
+			}
+			System.out.println();
+		}
+	}
 
 	public static void main(String[] args) throws WriterException, IOException
 	{
@@ -25,20 +43,10 @@ public class Test
 		}
 		
 		if (console_print)
-		for (int y = 0; y < qrcode.size(); y++)
 		{
-			for (int x = 0; x < qrcode.size(); x++)
-			{
-				if (qrcode.get(x, y))
-				{
-					System.out.print("**");
-				} else
-				{
-					System.out.print("  ");
-				}
-			}
-			System.out.println();
+			console_print(qrcode);
 		}
+		
 		
 		QRtoGerber q2g = new QRtoGerber(qrcode, 10.0);
 		System.out.println("line width = " + (int)(q2g.line_size_mm()*1000) + " um");
