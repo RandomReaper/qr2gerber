@@ -5,7 +5,7 @@ public class QRtoGerber
 	private double size;
 	private QRPlusInfo qrcode;
 	
-	private static final String VERSION = "0.1";
+	private static final String VERSION = "0.2";
 	
 	private static final int INTEGER_PLACES = 4;
 	private static final int DECIMAL_PLACES = 4;
