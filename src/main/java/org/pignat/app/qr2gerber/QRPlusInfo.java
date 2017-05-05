@@ -1,6 +1,7 @@
 package org.pignat.app.qr2gerber;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -14,13 +15,13 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
  */
 public class QRPlusInfo
 {
-	BitMatrix m_qrcode;
-	String m_string;
+	BitMatrix qrcode;
+	String string;
 	
 	private QRPlusInfo(String s, BitMatrix q)
 	{
-		m_string = s;
-		m_qrcode = q;
+		string = s;
+		qrcode = q;
 	}
 
 	/**
@@ -30,7 +31,7 @@ public class QRPlusInfo
 	 * @return A new QRPlusInfo
 	 * @throws WriterException
 	 */
-	public static QRPlusInfo encode(String string, EnumMap<EncodeHintType, Object> encodingOptions) throws WriterException
+	public static QRPlusInfo encode(String string, Map<EncodeHintType, Object> encodingOptions) throws WriterException
 	{
 		QRCodeWriter writer = new QRCodeWriter();
 		BitMatrix q = writer.encode(
@@ -61,11 +62,11 @@ public class QRPlusInfo
 	 */
 	public QRPlusInfo invert()
 	{
-		for (int y = 0 ; y < m_qrcode.getHeight(); y++)
+		for (int y = 0 ; y < qrcode.getHeight(); y++)
 		{
-			for (int x = 0 ; x < m_qrcode.getWidth(); x++)
+			for (int x = 0 ; x < qrcode.getWidth(); x++)
 			{
-				m_qrcode.flip(x, y);
+				qrcode.flip(x, y);
 			}
 		}
 		
@@ -78,7 +79,7 @@ public class QRPlusInfo
 	 */
 	public int size()
 	{
-		return m_qrcode.getWidth();
+		return qrcode.getWidth();
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class QRPlusInfo
 	 */
 	public String string()
 	{
-		return m_string;
+		return string;
 	}
 	
 	/**
@@ -98,7 +99,7 @@ public class QRPlusInfo
 	 */
 	public boolean get(int x, int y)
 	{
-		return m_qrcode.get(x, y);
+		return qrcode.get(x, y);
 	}
 	
 }

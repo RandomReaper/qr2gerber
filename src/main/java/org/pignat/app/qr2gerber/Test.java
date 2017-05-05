@@ -49,7 +49,7 @@ public class Test
 		
 		
 		QRtoGerber q2g = new QRtoGerber(qrcode, 10.0);
-		System.out.println("line width = " + (int)(q2g.line_size_mm()*1000) + " um");
+		System.out.println("line width = " + (int)(q2g.lineSize()*1000) + " um");
 		PrintWriter out = new PrintWriter("test.gbr");
 		long before = System.currentTimeMillis();
 		String s = q2g.toGerber(); 

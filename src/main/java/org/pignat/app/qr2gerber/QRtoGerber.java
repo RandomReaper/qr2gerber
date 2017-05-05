@@ -2,8 +2,8 @@ package org.pignat.app.qr2gerber;
 
 public class QRtoGerber
 {
-	private double m_size_mm;
-	private QRPlusInfo m_qrcode;
+	private double size;
+	private QRPlusInfo qrcode;
 	
 	private static final String VERSION = "0.1";
 	
@@ -37,27 +37,27 @@ public class QRtoGerber
 	private static final boolean WORKAROUND_FLASHING = true;
 	
 	/**
-	 * @param m_qrcode The original QRCode 
-	 * @param size_mm The final size
+	 * @param sz The original QRCode 
+	 * @param sz The final size
 	 */
-	public QRtoGerber(QRPlusInfo matrix, double size_mm)
+	public QRtoGerber(QRPlusInfo q, double sz)
 	{
-		m_qrcode = matrix;
-		m_size_mm = size_mm;
+		qrcode = q;
+		size = sz;
 	}
 	
-	public double line_size_mm()
+	public double lineSize()
 	{
-		return (m_size_mm/m_qrcode.size());
+		return (size/qrcode.size());
 	}
 
-	private String draw(QRPlusInfo matrix, int x, int y, int dx, int dy)
+	private String draw(QRPlusInfo matrix, int sx, int sy, int dx, int dy)
 	{
-		int f = (int)(SCALE*m_size_mm/matrix.size());
-		x = f * x;
+		int f = (int)(SCALE*size/matrix.size());
+		int x = f * sx;
+
 		/* Invert Y for gerber */
-		y = matrix.size()-1-y;
-		y = f * y;
+		int y = f * (matrix.size()-1-sy);
 
 		if (WORKAROUND_OFFSET)
 		{
@@ -86,24 +86,23 @@ public class QRtoGerber
 
 	public String toGerber()
 	{
-		double line_size = line_size_mm();
+		double line_size = lineSize();
 		StringBuilder s = new StringBuilder();
-		String size = String.format("%.4f", line_size);
+		String sizeString = String.format("%.4f", line_size);
 		
 		s.append("G04 File generated using https://github.com/RandomReaper/qr2gerber *\n");
 		
-		/* FIXME : add line width, program version, ..*/
 		s.append("G04 encoded with QRtoGerber version " + VERSION + " *\n");
-		s.append("G04 encoded string : '" + m_qrcode.string() + "' *\n");
-		s.append("G04 target size : " + m_size_mm + " mm*\n");
+		s.append("G04 encoded string : '" + qrcode.string() + "' *\n");
+		s.append("G04 target size : " + size + " mm*\n");
 
-		s.append("G04 line width = " + (int)(line_size_mm()*1000) + " um" +  " *\n");
+		s.append("G04 line width = " + (int)(lineSize()*1000) + " um" +  " *\n");
 		s.append("%INQR2GERBER.GBR*%\n");
 		
 		/* Specify format */
 		s.append("%ICAS*%\n");
 		s.append("%MOMM*%\n");
-		s.append("%ADD" + D_CODE +"R, "+ size + "X" + size + "*%\n");
+		s.append("%ADD" + D_CODE +"R, "+ sizeString + "X" + sizeString + "*%\n");
 		s.append("%FSLAX"+INTEGER_PLACES+DECIMAL_PLACES+"Y"+INTEGER_PLACES+DECIMAL_PLACES+"*%\n");
 		s.append("%SFA1B1*%\n");
 		s.append("%OFA0.000B0.000*%\n");
@@ -116,26 +115,26 @@ public class QRtoGerber
 		s.append("D" + D_CODE + "*\n");
 
 		/* Draw horizontal lines  */
-		for (int y = 0; y < m_qrcode.size(); y++)
+		for (int y = 0; y < qrcode.size(); y++)
 		{
 			int x = 0;
 			int len = 0;
-			while (x < m_qrcode.size())
+			while (x < qrcode.size())
 			{
-				if (m_qrcode.get(x, y))
+				if (qrcode.get(x, y))
 				{
 					len++;
 				}
-				if (len > 0 && !m_qrcode.get(x, y))
+				if (len > 0 && !qrcode.get(x, y))
 				{
-					s.append(draw(m_qrcode, x-len, y, len-1, 0));
+					s.append(draw(qrcode, x-len, y, len-1, 0));
 					len = 0;
 				}
 				x++;
 			}
 			if (len > 0)
 			{
-				s.append(draw(m_qrcode, x-len, y, len-1, 0));
+				s.append(draw(qrcode, x-len, y, len-1, 0));
 			}
 		}
 	

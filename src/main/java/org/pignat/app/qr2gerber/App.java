@@ -107,7 +107,7 @@ public class App extends JFrame implements ActionListener {
 				encodingOptions.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 				qrcode = QRPlusInfo.encode(stringField.getText(), encodingOptions).invert();
 				QRPlusInfo.encode(stringField.getText());
-				preview.setImage(MatrixToImageWriter.toBufferedImage(QRPlusInfo.encode(stringField.getText()).m_qrcode));
+				preview.setImage(MatrixToImageWriter.toBufferedImage(QRPlusInfo.encode(stringField.getText()).qrcode));
 				preview.setSize(qrcode.size(), qrcode.size());
 		
 				QRtoGerber q2g = new QRtoGerber(qrcode, size);
