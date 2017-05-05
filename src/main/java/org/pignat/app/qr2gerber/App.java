@@ -114,12 +114,10 @@ public class App extends JFrame implements ActionListener {
 				PrintWriter out = new PrintWriter(destField.getText());
 				out.println(q2g.toGerber());
 				out.close();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (WriterException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			} catch (FileNotFoundException ex) {
+				ex.printStackTrace();
+			} catch (WriterException ex) {
+				ex.printStackTrace();
 			}		 
 		}
 		if (e.getSource() == browseButton)
@@ -134,7 +132,7 @@ public class App extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				App ex = new App();
