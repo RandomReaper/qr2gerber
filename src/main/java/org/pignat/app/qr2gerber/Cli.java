@@ -7,7 +7,7 @@ import com.google.zxing.WriterException;
 
 public class Cli 
 {
-	private static void Usage()
+	private static void usage()
 	{
 		System.out.println("qr2gerber string to encode size_in_mm [destination_file]");
 		System.out.println("\t example : qr2gerber \"my message\" 3.72 test.gbr");
@@ -21,7 +21,7 @@ public class Cli
 		
 		if (args.length != 2 && args.length != 3)
 		{
-			Usage();
+			usage();
 			System.exit(-1);
 		}
 		
@@ -32,7 +32,7 @@ public class Cli
 		}
 		catch (Exception e)
 		{
-			Usage();
+			usage();
 			System.exit(-2);
 		}
 

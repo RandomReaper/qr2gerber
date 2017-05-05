@@ -1,7 +1,6 @@
 package org.pignat.app.qr2gerber;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -31,7 +30,7 @@ public class QRPlusInfo
 	 * @return A new QRPlusInfo
 	 * @throws WriterException
 	 */
-	public static QRPlusInfo encode(String string, Map<EncodeHintType, Object> encodingOptions) throws WriterException
+	public static QRPlusInfo encode(String string, EnumMap<EncodeHintType, Object> encodingOptions) throws WriterException
 	{
 		QRCodeWriter writer = new QRCodeWriter();
 		BitMatrix q = writer.encode(
@@ -49,7 +48,7 @@ public class QRPlusInfo
 	 */
 	public static QRPlusInfo encode(String string) throws WriterException
 	{
-		Map<EncodeHintType, Object> encodingOptions = new HashMap <EncodeHintType, Object>();
+		EnumMap<EncodeHintType, Object> encodingOptions = new EnumMap <EncodeHintType, Object>(EncodeHintType.class);
 		encodingOptions.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
 		
 		return encode(string, encodingOptions);
