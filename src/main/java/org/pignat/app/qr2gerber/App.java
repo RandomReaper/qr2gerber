@@ -18,6 +18,7 @@ import net.miginfocom.swing.MigLayout;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,7 +105,7 @@ public class App extends JFrame implements ActionListener {
 				double size = Double.parseDouble(sizeField.getText());
 				QRPlusInfo qrcode = null;
 				
-				Map<EncodeHintType, Object> encodingOptions = new HashMap<EncodeHintType, Object>();
+				EnumMap<EncodeHintType, Object> encodingOptions = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
 				encodingOptions.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 				qrcode = QRPlusInfo.encode(stringField.getText(), encodingOptions).invert();
 				QRPlusInfo.encode(stringField.getText());

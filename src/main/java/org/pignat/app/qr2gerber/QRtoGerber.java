@@ -136,7 +136,6 @@ public class QRtoGerber
 			if (len > 0)
 			{
 				s.append(draw(m_qrcode, x-len, y, len-1, 0));
-				len = 0;
 			}
 		}
 	
