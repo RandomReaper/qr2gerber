@@ -19,8 +19,6 @@ import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;

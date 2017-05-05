@@ -13,7 +13,7 @@ public class Cli
 		System.out.println("\t example : qr2gerber \"my message\" 3.72 test.gbr");
 	}
 	
-	public static void main(String args[]) throws WriterException, FileNotFoundException
+	public static void main(String[] args) throws WriterException, FileNotFoundException
 	{
 		String string = null;
 		double size = 10.0;

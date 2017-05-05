@@ -8,7 +8,7 @@ import com.google.zxing.WriterException;
 public class Test
 {
 	private static final boolean OPTION_INVERT = true;
-	private static final boolean OPTION_CONSOLE_PRINT = false;
+	private static final boolean OPTION_CONSOLE_PRINT = true;
 	
 	private static void consolePrint(QRPlusInfo qrcode)
 	{
@@ -32,7 +32,7 @@ public class Test
 	{
 		QRPlusInfo qrcode = QRPlusInfo.encode
 		(
-			"http://wiki.hevs.ch/uit/index.php5/Hardware/ARMEBS/4/Welcome"
+			"https://github.com/RandomReaper"
 		); 
 		
 		System.out.println("matrix size = " + qrcode.size() + "x" + qrcode.size());
@@ -56,6 +56,5 @@ public class Test
 		System.out.println("done in " + (System.currentTimeMillis()-before) + " ms");
 		out.println(s);
 		out.close();
-
 	}
 }
