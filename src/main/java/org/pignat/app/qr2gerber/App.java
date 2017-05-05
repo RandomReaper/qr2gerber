@@ -28,14 +28,14 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 public class App extends JFrame implements ActionListener {
 	class CustomDraw extends JPanel {
-		int x;
-		int y;
+		int lx;
+		int ly;
 
 		BufferedImage img = null;
 
-		CustomDraw(int _x, int _y) {
-			x = _x;
-			y = _y;
+		CustomDraw(int x, int y) {
+			lx = x;
+			ly = y;
 		}
 
 		protected void paintComponent(Graphics g) {
@@ -46,11 +46,11 @@ public class App extends JFrame implements ActionListener {
 		}
 
 		public Dimension getPreferredSize() {
-			return new Dimension(x, y);
+			return new Dimension(lx, ly);
 		}
 
 	    public Dimension getMinimumSize() {
-			return new Dimension(x, y);
+			return new Dimension(lx, ly);
 	    }
 
 		public void setImage(BufferedImage i)
