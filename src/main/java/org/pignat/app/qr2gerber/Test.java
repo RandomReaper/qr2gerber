@@ -7,10 +7,10 @@ import com.google.zxing.WriterException;
 
 public class Test
 {
-	private static final boolean invert = true;
-	private static final boolean console_print = false;
+	private static final boolean OPTION_INVERT = true;
+	private static final boolean OPTION_CONSOLE_PRINT = false;
 	
-	private static void console_print(QRPlusInfo qrcode)
+	private static void consolePrint(QRPlusInfo qrcode)
 	{
 		for (int y = 0; y < qrcode.size(); y++)
 		{
@@ -37,14 +37,14 @@ public class Test
 		
 		System.out.println("matrix size = " + qrcode.size() + "x" + qrcode.size());
 
-		if (invert)
+		if (OPTION_INVERT)
 		{
 			qrcode.invert();
 		}
 		
-		if (console_print)
+		if (OPTION_CONSOLE_PRINT)
 		{
-			console_print(qrcode);
+			consolePrint(qrcode);
 		}
 		
 		
